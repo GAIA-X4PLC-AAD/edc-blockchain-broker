@@ -48,11 +48,22 @@ All needed repositories are included in this repository as submodules.
 
 ## Support
 
+If you have any questions regarding the Tezos Client API implementation, feel free to contact me:
+<hartmann@tu-berlin.de>
+
 If there are any problems with installation or deployment, you can write me a mail:
 <julian.legler@tu-berlin.de>
 
-If you have any questions regarding the Tezos Client API implementation, feel free to contact me:
-<hartmann@tu-berlin.de>
+### Changes to the EDC
+The sample 0.4.1-file-transfer-listener, more specific the files in `samples/04.1-file-transfer-listener/listener/src/main/java/org/eclipse/dataspaceconnector/extensions/listener/` where newly introduced to handle all blockchain related parsing and sending.
+
+At the same time, changes where introduced to the EDC Federated Catalog Core. The ExecutionManager was changed with an altered copy if it: `core/federated-catalog/federated-catalog-core/src/main/java/org/eclipse/dataspaceconnector/catalog/cache/BlockchainExecutionManager.java` The `BlockchainExecutionManager` now intercepts the normal behavior of the Federated Catalog. It is no longer trying to communicate with other Connectors. Now, it fetches regularly the blockchain "broker" and get all the available offers and stores them as avilable offers natively in the EDC system.
+
+To build and run the edc provider from source, run this command in the root directory of the EclipseDataspaceConnector submodule:
+```
+./gradlew samples:04.0-file-transfer:provider:build
+java -Dedc.fs.config=samples/04.0-file-transfer/provider/config.properties -jar samples/04.0-file-transfer/provider/build/libs/provider.jar
+``` 
 
 ## Outlook
 
