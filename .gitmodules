@@ -6,7 +6,6 @@
 	path = edc-interface
 	url = https://github.com/johannha/edc-interface.git
 	branch = demo_v1
-[submodule "DataSpaceConnector"]
-	path = DataSpaceConnector
-	url = https://github.com/JulianLegler/DataSpaceConnector.git
-	branch = demo_v1
+[submodule "Samples-Blockchain"]
+	path = Samples-Blockchain
+	url = https://github.com/JulianLegler/Samples-Blockchain

@@ -8,7 +8,7 @@
 
 **This Repository was created to work for the specific demonstration of connecting the EDC to the tezos-edc-interface and the edc dashboard**
 
-We use a fork of the [Eclipse Dataspace Connector (EDC)](https://github.com/eclipse-edc/Connector) and extended it with blockchain capabilities.
+We provide an extension that uses the [Eclipse Dataspace Connector (EDC)](https://github.com/eclipse-edc/Connector) by extending it with blockchain capabilities for the brokering / contract discovery process.
 
 EDC Data Dashboard is a dev frontend application for [EDC Data Management API](https://github.com/eclipse-dataspaceconnector/DataSpaceConnector). We had to fix some issues, so use our forked version to make sure everything works.
 
@@ -42,9 +42,14 @@ All needed repositories are included in this repository as submodules.
 
 - Run `npm install` to install all dependencies
 
-- Run `npm run start-edc` to start provider part of the EDC (Java must installed locally). An EDC instance should now be running which implements an extension accessing the blockchain by using the Tezos client provided by EDC-Interface. A precompiled EDC provider .jar file is placed in this submodule to enable an easy start. The source code for this EDC version can be found in the EDC submodule.
-
 - Run `npm run start` to host angular frontend
+
+To build and run the edc extension and the edc , run the next two commands in the root directory of the Samples-Blockchain submodule:
+- `./gradlew BlockchainCatalog:blockchain-catalog-prosumer:run`
+
+- `java -Dedc.fs.config=BlockchainCatalog/blockchain-catalog-prosumer/config.properties -jar BlockchainCatalog/blockchain-catalog-prosumer/build/libs/consumer.jar`
+
+
 
 ## Support
 
@@ -54,15 +59,7 @@ If you have any questions regarding the Tezos Client API implementation, feel fr
 If there are any problems with installation or deployment, you can write me a mail:
 <julian.legler@tu-berlin.de>
 
-### Changes to the EDC
-The sample 0.4.1-file-transfer-listener, more specific the files in `samples/04.1-file-transfer-listener/listener/src/main/java/org/eclipse/dataspaceconnector/extensions/listener/` where newly introduced to handle all blockchain related parsing and sending.
 
-At the same time, changes where introduced to the EDC Federated Catalog Core. The ExecutionManager was changed with an altered copy if it: `core/federated-catalog/federated-catalog-core/src/main/java/org/eclipse/dataspaceconnector/catalog/cache/BlockchainExecutionManager.java` The `BlockchainExecutionManager` now intercepts the normal behavior of the Federated Catalog. It is no longer trying to communicate with other Connectors. Now, it fetches regularly the blockchain "broker" and get all the available offers and stores them as avilable offers natively in the EDC system.
-
-To build and run the edc provider from source, run this command in the root directory of the EclipseDataspaceConnector submodule:
-```
-./gradlew samples:04.0-file-transfer:provider:build
-java -Dedc.fs.config=samples/04.0-file-transfer/provider/config.properties -jar samples/04.0-file-transfer/provider/build/libs/provider.jar
 ``` 
 
 ## Outlook
