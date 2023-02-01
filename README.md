@@ -21,6 +21,10 @@ The Tezos-EDC Interface is a programm we created, to enable the connection betwe
 - Implement a blockchain interface to realize minting and token querying functionality
 - Optimize token request by adding blockchain indexer → lower response time
 - Visualize process of asset, policy and contract offer creation in Data Dashboard → extension and modification is needed
+## Prerequisites
+
+Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) 
+(We're still working on a fix for this)
 
 ## Installation & Execution
 
@@ -49,6 +53,7 @@ To build and run the edc extension and the edc , run the next two commands in th
 
 - `java -Dedc.fs.config=BlockchainCatalog/blockchain-catalog-prosumer/config.properties -jar BlockchainCatalog/blockchain-catalog-prosumer/build/libs/consumer.jar`
 
+Use http://localhost:4200/ to explore the Data Dashboard in your browser.
 
 
 ## Support
