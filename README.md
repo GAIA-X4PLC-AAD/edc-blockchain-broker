@@ -45,7 +45,7 @@ All needed repositories are included in this repository as submodules.
 - Run `npm run start` to host angular frontend
 
 To build and run the edc extension and the edc , run the next two commands in the root directory of the Samples-Blockchain submodule:
-- `./gradlew BlockchainCatalog:blockchain-catalog-prosumer:run`
+- `./gradlew BlockchainCatalog:blockchain-catalog-prosumer:build`
 
 - `java -Dedc.fs.config=BlockchainCatalog/blockchain-catalog-prosumer/config.properties -jar BlockchainCatalog/blockchain-catalog-prosumer/build/libs/consumer.jar`
 
