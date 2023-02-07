@@ -1,0 +1,19 @@
+version: "3.0"
+services:
+  edc-blockchain:
+    image: "julianlegler/edc_blockchain_catalog"
+    ports:
+      - "8181:8181"
+      - "8182:8182"
+      - "8282:8282"
+    network_mode: host
+  edc-interface:
+    image: johann1999/edc-interface:linux-amd64
+    ports:
+      - "3000:3000"
+    environment:
+      - PINATA_KEY=pinata_key
+  data-dashboard:
+    image: johann1999/data-dashboard:linux-amd64
+    ports:
+      - "5500:80"
