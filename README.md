@@ -26,6 +26,9 @@ The Tezos-EDC Interface is a programm we created, to enable the connection betwe
 Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) 
 (We're still working on a fix for this)
 
+## Quickstart with docker compose
+Modify docker-compose.yml and add your [Pinata key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key). Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
+
 ## Installation & Execution
 
 In order to try the demonstration, you need to run three applications:
