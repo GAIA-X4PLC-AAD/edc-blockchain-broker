@@ -1,11 +1,11 @@
 [submodule "DataDashboard"]
 	path = DataDashboard
 	url = https://github.com/johannha/DataDashboard.git
-	branch = demo_v1
+	branch = main
 [submodule "edc-interface"]
 	path = edc-interface
 	url = https://github.com/johannha/edc-interface.git
-	branch = demo_v1
+	branch = main
 [submodule "Samples-Blockchain"]
 	path = Samples-Blockchain
 	url = https://github.com/JulianLegler/Samples-Blockchain
