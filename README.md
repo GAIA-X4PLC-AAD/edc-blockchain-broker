@@ -21,13 +21,24 @@ The Tezos-EDC Interface is a programm we created, to enable the connection betwe
 - Implement a blockchain interface to realize minting and token querying functionality
 - Optimize token request by adding blockchain indexer → lower response time
 - Visualize process of asset, policy and contract offer creation in Data Dashboard → extension and modification is needed
+
 ## Prerequisites
 
-Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) 
+Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino)
 (We're still working on a fix for this)
 
 ## Quickstart with docker compose
+
 Modify docker-compose.yml and add your [Pinata key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key). Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
+
+Optionally you can add environment varibales to the edc-interface container in order to specify your own smart contract addresses.
+Following params can be modified:
+
+- `ASSET_ADDRESS` - default value = `KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH`
+- `POLICY_ADDRESS` - default value = `KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9`
+- `CONTRACT_ADDRESS` - default value = `KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5`
+- `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
+- `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
 
 ## Installation & Execution
 
@@ -52,12 +63,12 @@ All needed repositories are included in this repository as submodules.
 - Run `npm run start` to host angular frontend
 
 To build and run the edc extension and the edc , run the next two commands in the root directory of the Samples-Blockchain submodule:
+
 - `./gradlew BlockchainCatalog:blockchain-catalog-prosumer:build`
 
 - `java -Dedc.fs.config=BlockchainCatalog/blockchain-catalog-prosumer/config.properties -jar BlockchainCatalog/blockchain-catalog-prosumer/build/libs/consumer.jar`
 
 Use http://localhost:4200/ to explore the Data Dashboard in your browser.
-
 
 ## Support
 
@@ -67,8 +78,7 @@ If you have any questions regarding the Tezos Client API implementation, feel fr
 If there are any problems with installation or deployment, you can write me a mail:
 <julian.legler@tu-berlin.de>
 
-
-``` 
+```
 
 ## Outlook
 
@@ -84,3 +94,4 @@ If there are any problems with installation or deployment, you can write me a ma
 ## Legal
 
 See legal comments of the three sub repositories.
+```
