@@ -40,7 +40,11 @@ Following params can be modified:
 - `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
 - `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
 
-### Using Azurite
+### Using Azurite (currently disabled)
+
+---
+
+
 Create a file in Azurite to test the later transfer process
 ```shell
 conn_str="DefaultEndpointsProtocol=http;AccountName=company1assets;AccountKey=key1;BlobEndpoint=http://127.0.0.1:10000/company1assets;"
