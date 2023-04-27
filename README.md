@@ -29,6 +29,20 @@ Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](h
 ## Quickstart with docker compose
 Modify docker-compose.yml and add your [Pinata key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key). Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
 
+### Using Azurite
+Create a file in Azurite to test the later transfer process
+```shell
+conn_str="DefaultEndpointsProtocol=http;AccountName=company1assets;AccountKey=key1;BlobEndpoint=http://127.0.0.1:10000/company1assets;"
+```
+
+```bash
+az storage container create --name src-container --connection-string $conn_str
+```
+
+```bash
+az storage blob upload -f ./README.md --container-name src-container --name README.md --connection-string $conn_str
+``` 
+
 ## Installation & Execution
 
 In order to try the demonstration, you need to run three applications:
@@ -57,6 +71,28 @@ To build and run the edc extension and the edc , run the next two commands in th
 - `java -Dedc.fs.config=BlockchainCatalog/blockchain-catalog-prosumer/config.properties -jar BlockchainCatalog/blockchain-catalog-prosumer/build/libs/consumer.jar`
 
 Use http://localhost:4200/ to explore the Data Dashboard in your browser.
+
+## Example run via Postman requests
+
+Deploy the two EDCs and the edc-interface.
+
+Use this [postman workspace](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/overview) to get access to the following requests.
+
+Navigate to the `EDC REST API (new)` Collection. The workspace makes strong use of variables and environments which are manipulated via Pre-request Scripts and Tests. To change the used URLs, click on the `EDC REST API (new)` and open `Variables`. The environment `Test` contains mostly variables that are changed during the execution of the requests. E.g. ids that are increased every request to mitigate duplicated keys and ids that are needed for later requests. 
+
+For a full example the following requests have to be send in this order:
+
+1. [`assets/create Asset`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-30191026-1337-4d3f-bdce-fc813f8810b7)
+2. [`policydefinitions/create Policy`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-6aabb435-a6bc-4de4-8102-419bf4480031)
+3. [`policydefinitions/create Policy Client`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-1f23da91-b339-4068-9d71-b9cd0f751310)
+4. [`contractdefinitions/create Contract Definition`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-c40ee970-2e1c-4837-a60d-9985bde97d39)
+5. [`contractnegotiations/initiate Contract Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4832c0a1-de1e-4af8-a88e-800fa8624cf6)
+6. [`contractnegotiations/{id}/get Agreement for Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-dbf7af91-4431-4c1d-88a7-2412c7959605) 
+7. [`transferprocess/initiate Transfer`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-67da23b7-5663-4327-8327-eeda827c8964)
+
+Every step makes use of pre and post Requests scripts which collect values from request responses and save them for later requests. This should give an overview of how the requests works and how to change them for individual use cases.
+
+
 
 
 ## Support

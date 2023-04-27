@@ -22,6 +22,7 @@ services:
       EDC_WEB_REST_CORS_HEADERS: "*"
       EDC_WEB_REST_CORS_ORIGINS: "*"
       EDC_WEB_REST_CORS_METHODS: "GET, POST, DELETE, PUT, OPTIONS"
+      EDC_HOSTNAME: "connector-1"
   edc-interface-1:
     container_name: edc-interface-1
     image: johann1999/edc-interface:linux-amd64
@@ -34,8 +35,8 @@ services:
       - "5500:80"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
-      DATA_MANAGEMENT_URL: "http://localhost:8182/api/v1/data"
-      CATALOG_URL: "http://localhost:8181/api/federatedcatalog"
+      DATA_MANAGEMENT_URL: "http://localhost:8182/api/v1/data" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      CATALOG_URL: "http://localhost:8181/api/federatedcatalog" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
@@ -63,10 +64,11 @@ services:
       EDC_WEB_REST_CORS_HEADERS: "*"
       EDC_WEB_REST_CORS_ORIGINS: "*"
       EDC_WEB_REST_CORS_METHODS: "GET, POST, DELETE, PUT, OPTIONS"
+      EDC_HOSTNAME: "connector-2"
     depends_on:
       - edc-interface-2
       - data-dashboard-2
-      - azurite
+#      - azurite
   edc-interface-2:
     container_name: edc-interface-2
     image: johann1999/edc-interface:linux-amd64
@@ -79,16 +81,16 @@ services:
       - "5502:80"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
-      DATA_MANAGEMENT_URL: "http://localhost:9192/api/v1/data" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192
-      CATALOG_URL: "http://localhost:9191/api/federatedcatalog" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192
+      DATA_MANAGEMENT_URL: "http://localhost:9192/api/v1/data" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      CATALOG_URL: "http://localhost:9191/api/federatedcatalog" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       STORAGE_ACCOUNT: "company2assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
       THEME: "theme-2"
-  azurite:
-    container_name: azurite
-    image: mcr.microsoft.com/azure-storage/azurite
-    ports:
-      - 10000:10000
-    environment:
-      AZURITE_ACCOUNTS: company1assets:key1;company2assets:key2;company3assets:key3
+#  azurite:
+#    container_name: azurite
+#    image: mcr.microsoft.com/azure-storage/azurite
+#    ports:
+#      - 10000:10000
+#    environment:
+#      AZURITE_ACCOUNTS: company1assets:key1;company2assets:key2;company3assets:key3
