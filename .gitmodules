@@ -5,7 +5,6 @@
 [submodule "edc-interface"]
 	path = edc-interface
 	url = https://github.com/johannha/edc-interface.git
-	branch = demo_v1
 [submodule "Samples-Blockchain"]
 	path = Samples-Blockchain
 	url = https://github.com/JulianLegler/Samples-Blockchain
