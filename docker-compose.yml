@@ -2,11 +2,12 @@ version: "3.0"
 services:
   connector-1:
     container_name: connector-1
-    image: "julianlegler/edc_blockchain_catalog"
+    image: "julianlegler/edc_blockchain_provider"
     ports:
       - "8181:8181"
       - "8182:8182"
       - "8282:8282"
+      - "8183:8183"
     environment:
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-1:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-1:8282"
@@ -22,6 +23,8 @@ services:
       EDC_WEB_REST_CORS_HEADERS: "*"
       EDC_WEB_REST_CORS_ORIGINS: "*"
       EDC_WEB_REST_CORS_METHODS: "GET, POST, DELETE, PUT, OPTIONS"
+      EDC_RECEIVER_HTTP_ENDPOINT: "http://http-push-backend-services:4000/receiver/urn:connector:provider/callback"
+      EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
   edc-interface-1:
     container_name: edc-interface-1
@@ -44,11 +47,12 @@ services:
   # Client 2
   connector-2:
     container_name: connector-2
-    image: "julianlegler/edc_blockchain_catalog"
+    image: "julianlegler/edc_blockchain_consumer"
     ports:
       - "9191:9191"
       - "9192:9192"
       - "9292:9292"
+      - "9193:9193"
     environment:
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-2:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-2:9292"
@@ -65,6 +69,7 @@ services:
       EDC_WEB_REST_CORS_ORIGINS: "*"
       EDC_WEB_REST_CORS_METHODS: "GET, POST, DELETE, PUT, OPTIONS"
       EDC_HOSTNAME: "connector-2"
+      EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-2:9193/control/token"
     depends_on:
       - edc-interface-2
       - data-dashboard-2
@@ -94,3 +99,8 @@ services:
 #      - 10000:10000
 #    environment:
 #      AZURITE_ACCOUNTS: company1assets:key1;company2assets:key2;company3assets:key3
+  http-push-backend-services:
+    container_name: http-push-backend-services
+    image: julianlegler/edc_transfer_backend 
+    ports: 
+    - "4000:4000"
