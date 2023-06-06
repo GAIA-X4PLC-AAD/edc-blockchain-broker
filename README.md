@@ -106,7 +106,7 @@ For a full example the following requests have to be send in this order:
 4. [`contractdefinitions/create Contract Definition`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-c40ee970-2e1c-4837-a60d-9985bde97d39)
 5. [`contractnegotiations/initiate Contract Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4832c0a1-de1e-4af8-a88e-800fa8624cf6)
 6. [`contractnegotiations/{id}/get Agreement for Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-dbf7af91-4431-4c1d-88a7-2412c7959605) 
-7. [dataplane/register dataplane at provider](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-fc79c794-f348-4ba7-9996-a5775de5ca17)
+7. [`dataplane/register dataplane at provider`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-fc79c794-f348-4ba7-9996-a5775de5ca17)
 8. [`transferprocess/initiate Transfer http push`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4d80d47b-9c55-428e-af12-449d99009436)
 
 Every step makes use of pre and post Requests scripts which collect values from request responses and save them for later requests. This should give an overview of how the requests works and how to change them for individual use cases.
