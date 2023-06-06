@@ -100,13 +100,14 @@ Navigate to the `EDC REST API (new)` Collection. The workspace makes strong use 
 
 For a full example the following requests have to be send in this order:
 
-1. [`assets/create Asset`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-30191026-1337-4d3f-bdce-fc813f8810b7)
+1. [`assets/create Asset`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-bbf66f1b-0187-4268-8ff4-c30fccd0b0c3)
 2. [`policydefinitions/create Policy`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-6aabb435-a6bc-4de4-8102-419bf4480031)
 3. [`policydefinitions/create Policy Client`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-1f23da91-b339-4068-9d71-b9cd0f751310)
 4. [`contractdefinitions/create Contract Definition`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-c40ee970-2e1c-4837-a60d-9985bde97d39)
 5. [`contractnegotiations/initiate Contract Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4832c0a1-de1e-4af8-a88e-800fa8624cf6)
 6. [`contractnegotiations/{id}/get Agreement for Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-dbf7af91-4431-4c1d-88a7-2412c7959605) 
-7. [`transferprocess/initiate Transfer`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-67da23b7-5663-4327-8327-eeda827c8964)
+7. [dataplane/register dataplane at provider](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-fc79c794-f348-4ba7-9996-a5775de5ca17)
+8. [`transferprocess/initiate Transfer http push`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4d80d47b-9c55-428e-af12-449d99009436)
 
 Every step makes use of pre and post Requests scripts which collect values from request responses and save them for later requests. This should give an overview of how the requests works and how to change them for individual use cases.
 
