@@ -32,17 +32,17 @@ services:
     environment:
       PINATA_KEY: ""
       #demo
-      ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
-      POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
-      CONTRACT_ADDRESS: "KT1U4tQpYzSCq7HPUTx8q5qMWMtNvqC5zJRp"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
+      #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
+      #CONTRACT_ADDRESS: "KT1U4tQpYzSCq7HPUTx8q5qMWMtNvqC5zJRp"
+      #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
+      #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      #ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      #POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      #CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      #TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      #AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
   data-dashboard-1:
     container_name: data-dashboard-1
     image: julianlegler/edc_data_dashboard #johann1999/data-dashboard:linux-amd64
@@ -92,17 +92,17 @@ services:
     environment:
       PINATA_KEY: ""
       #demo
-      ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
-      POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
-      CONTRACT_ADDRESS: "KT1U4tQpYzSCq7HPUTx8q5qMWMtNvqC5zJRp"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
+      #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
+      #CONTRACT_ADDRESS: "KT1U4tQpYzSCq7HPUTx8q5qMWMtNvqC5zJRp"
+      #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
+      #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      #ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      #POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      #CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      #TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      #AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
   data-dashboard-2:
     container_name: data-dashboard-2
     image: julianlegler/edc_data_dashboard #johann1999/data-dashboard:linux-amd64
@@ -128,3 +128,5 @@ services:
     image: julianlegler/edc_transfer_backend 
     ports: 
     - "4000:4000"
+    volumes:
+      - ./container-data:/data
