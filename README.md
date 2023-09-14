@@ -94,7 +94,7 @@ Use http://localhost:4200/ to explore the Data Dashboard in your browser.
 
 Deploy the two EDCs and the edc-interface.
 
-Use this [postman workspace](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/overview) to get access to the following requests.
+Use this [postman workspace](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/overview) to get access to the following requests. Also use this [Environment](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/environment/20564347-2ca28dbe-a227-4861-81ee-63c00544045f) of the Postman Collection 
 
 Navigate to the `EDC REST API (new)` Collection. The workspace makes strong use of variables and environments which are manipulated via Pre-request Scripts and Tests. To change the used URLs, click on the `EDC REST API (new)` and open `Variables`. The environment `Test` contains mostly variables that are changed during the execution of the requests. E.g. ids that are increased every request to mitigate duplicated keys and ids that are needed for later requests. 
 
