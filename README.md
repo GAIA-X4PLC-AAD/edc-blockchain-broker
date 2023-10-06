@@ -34,9 +34,9 @@ Modify docker-compose.yml and add your [Pinata JWT key](https://knowledge.pinata
 Optionally you can add environment varibales to the edc-interface container in order to specify your own smart contract addresses.
 Following params can be modified:
 
-- `ASSET_ADDRESS` - default value = `KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH`
-- `POLICY_ADDRESS` - default value = `KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9`
-- `CONTRACT_ADDRESS` - default value = `KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5`
+- `ASSET_ADDRESS` - default value = `KT1S2BZRyg9MXgERzsCUjqjiKS95L7FCt8KM`
+- `POLICY_ADDRESS` - default value = `KT1L7w74gXr1kuF2z4cEe59z7fhihdixSKWm`
+- `CONTRACT_ADDRESS` - default value = `KT1VSymTD5oqBHqQqXPhc7hXhyoL38AK6xpC`
 - `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
 - `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
 
