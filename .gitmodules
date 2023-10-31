@@ -1,10 +1,10 @@
-[submodule "DataDashboard"]
-	path = DataDashboard
-	url = https://github.com/johannha/DataDashboard.git
+[submodule "EDC-Blockchain-Dashboard"]
+	path = EDC-Blockchain-Dashboard
+	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Dashboard.git
 	branch = demo_v1
-[submodule "edc-interface"]
-	path = edc-interface
-	url = https://github.com/johannha/edc-interface.git
-[submodule "Samples-Blockchain"]
-	path = Samples-Blockchain
-	url = https://github.com/JulianLegler/Samples-Blockchain
+[submodule "EDC-Blockchain-Interface"]
+	path = EDC-Blockchain-Interface
+	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Interface.git
+[submodule "EDC-Blockchain-Catalog"]
+	path = EDC-Blockchain-Catalog
+	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog.git
