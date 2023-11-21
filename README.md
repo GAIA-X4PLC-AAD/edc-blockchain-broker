@@ -14,6 +14,8 @@ EDC Data Dashboard is a dev frontend application for [EDC Data Management API](h
 
 The Tezos-EDC Interface is a programm we created, to enable the connection between EDC and the Tezos Blockchain.
 
+Currently we support the EDC version 0.2.0
+
 ### Goal
 
 - Extend EDC functionality by managing and storing assets, policies and contract offerings as NFTs on Tezos blockchain
@@ -40,24 +42,6 @@ Following params can be modified:
 - `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
 - `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
 
-### Using Azurite (currently disabled)
-
----
-
-
-Create a file in Azurite to test the later transfer process
-```shell
-conn_str="DefaultEndpointsProtocol=http;AccountName=company1assets;AccountKey=key1;BlobEndpoint=http://127.0.0.1:10000/company1assets;"
-
-```
-
-```bash
-az storage container create --name src-container --connection-string $conn_str
-```
-
-```bash
-az storage blob upload -f ./README.md --container-name src-container --name README.md --connection-string $conn_str
-``` 
 
 
 ## Installation & Execution
@@ -94,20 +78,19 @@ Use http://localhost:4200/ to explore the Data Dashboard in your browser.
 
 Deploy the two EDCs and the edc-interface.
 
-Use this [postman workspace](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/overview) to get access to the following requests. Also use this [Environment](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/environment/20564347-2ca28dbe-a227-4861-81ee-63c00544045f) of the Postman Collection 
+Use this [postman workspace](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/collection/20564347-cf566691-f3bf-4e5c-aa66-84515bfd9b08?action=share&creator=20564347&active-environment=20564347-2ca28dbe-a227-4861-81ee-63c00544045f) to get access to the following requests. Also use this [Environment](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/environment/20564347-2ca28dbe-a227-4861-81ee-63c00544045f?action=share&creator=20564347&active-environment=20564347-2ca28dbe-a227-4861-81ee-63c00544045f) of the Postman Collection as there are many variables used to make the flow more easy. 
 
-Navigate to the `EDC REST API (new)` Collection. The workspace makes strong use of variables and environments which are manipulated via Pre-request Scripts and Tests. To change the used URLs, click on the `EDC REST API (new)` and open `Variables`. The environment `Test` contains mostly variables that are changed during the execution of the requests. E.g. ids that are increased every request to mitigate duplicated keys and ids that are needed for later requests. 
+Navigate to the `EDC REST API 0.2.0` Collection. The workspace makes strong use of variables and environments which are manipulated via Pre-request Scripts and Tests. To change the used URLs, click on the `EDC REST API 0.2.0` and open `Variables`. The environment `Test` contains mostly variables that are changed during the execution of the requests. E.g. ids that are increased every request to mitigate duplicated keys and ids that are needed for later requests. 
 
 For a full example the following requests have to be send in this order:
 
-1. [`assets/create Asset`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-bbf66f1b-0187-4268-8ff4-c30fccd0b0c3)
-2. [`policydefinitions/create Policy`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-6aabb435-a6bc-4de4-8102-419bf4480031)
-3. [`policydefinitions/create Policy Client`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-1f23da91-b339-4068-9d71-b9cd0f751310)
-4. [`contractdefinitions/create Contract Definition`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-c40ee970-2e1c-4837-a60d-9985bde97d39)
-5. [`contractnegotiations/initiate Contract Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4832c0a1-de1e-4af8-a88e-800fa8624cf6)
-6. [`contractnegotiations/{id}/get Agreement for Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-dbf7af91-4431-4c1d-88a7-2412c7959605) 
-7. [`dataplane/register dataplane at provider`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-fc79c794-f348-4ba7-9996-a5775de5ca17)
-8. [`transferprocess/initiate Transfer http push`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-4d80d47b-9c55-428e-af12-449d99009436)
+1. [`assets/create Asset`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-1c2d0dc5-6c83-4663-8251-083526687dad?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
+2. [`policydefinitions/create Policy`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-c4f8a661-cc24-4b03-aba6-ecf91dcb6573?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
+4. [`contractdefinitions/create Contract Definition`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-ec36f39d-1cfe-4dd1-92ab-a9f0804f5e5d?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
+5. [`contractnegotiations/initiate Contract Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-6d5cbc2e-30bd-4af1-8e27-b113ddd1a5dd?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
+6. [`contractnegotiations/{id}/get Negotiation`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-6deadddf-bec9-4917-9018-c8b90822f5b5?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f) 
+7. [`register dataplane`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-1b2fe7e9-3b8b-41b5-bb1d-f90e9dc5465e?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
+8. [`transferprocess/initiate Transfer Process`](https://www.postman.com/payload-specialist-10840615/workspace/edc-api-playground-tu-berlin/request/20564347-ebb002e6-64bb-47a0-b669-eb7479e336f6?active-environment=2ca28dbe-a227-4861-81ee-63c00544045f)
 
 Every step makes use of pre and post Requests scripts which collect values from request responses and save them for later requests. This should give an overview of how the requests works and how to change them for individual use cases.
 
@@ -115,10 +98,6 @@ Every step makes use of pre and post Requests scripts which collect values from 
 
 
 ## Support
-
-If you have any questions regarding the Tezos Client API implementation, feel free to contact me:
-<hartmann@tu-berlin.de>
-
 If there are any problems with installation or deployment, you can write me a mail:
 <julian.legler@tu-berlin.de>
 
