@@ -2,23 +2,28 @@ version: "3.0"
 services:
   connector-1:
     container_name: connector-1
-    image: "julianlegler/edc_blockchain_provider"
+    image: julianlegler/edc_blockchain_provider:0.2.0
     ports:
       - "8181:8181"
       - "8182:8182"
       - "8282:8282"
       - "8183:8183"
+      - "8184:8184"
+      - "8185:8185"
     environment:
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-1:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-1:8282"
       WEB_HTTP_PORT: "8181"
       WEB_HTTP_PATH: "/api"
+      WEB_HTTP_PROTOCOL_PORT: 8184
+      WEB_HTTP_PROTOCOL_PATH: "/protocol"
       WEB_HTTP_MANAGEMENT_PORT: "8182"
-      WEB_HTTP_MANAGEMENT_PATH: "/api/v1/data"
-      WEB_HTTP_IDS_PORT: "8282"
-      WEB_HTTP_IDS_PATH: "/api/v1/ids"
+      WEB_HTTP_MANAGEMENT_PATH: "/management"
+      WEB_HTTP_CONTROL_PORT: 8183
+      WEB_HTTP_CONTROL_PATH: "/control"
+      WEB_HTTP_PUBLIC_PORT: 8185
+      WEB_HTTP_PUBLIC_PATH: "/public"
       EDC_API_AUTH_KEY: "password"
-      EDC_BLOBSTORE_ENDPOINT_TEMPLATE: "http://azurite:10000/%s"
       EDC_WEB_REST_CORS_ENABLED: "true"
       EDC_WEB_REST_CORS_HEADERS: "*"
       EDC_WEB_REST_CORS_ORIGINS: "*"
@@ -26,6 +31,7 @@ services:
       EDC_RECEIVER_HTTP_ENDPOINT: "http://http-push-backend-services:4000/receiver/urn:connector:provider/callback"
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
+      EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
   edc-interface-1:
     container_name: edc-interface-1
     image: johann1999/edc-interface:linux-amd64
@@ -38,20 +44,20 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
+      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      POLICY_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      CONTRACT_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      TRANSFER_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      AGREEMENT_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
   data-dashboard-1:
     container_name: data-dashboard-1
-    image: julianlegler/edc_data_dashboard #johann1999/data-dashboard:linux-amd64
+    image: julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
     ports:
       - "5500:80"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
-      DATA_MANAGEMENT_URL: "http://localhost:8182/api/v1/data" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
-      CATALOG_URL: "http://localhost:8181/api/federatedcatalog" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      DATA_MANAGEMENT_URL: "http://localhost:8182/management" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      CATALOG_URL: "http://localhost:8181/api" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
@@ -59,29 +65,36 @@ services:
   # Client 2
   connector-2:
     container_name: connector-2
-    image: "julianlegler/edc_blockchain_consumer"
+    image: julianlegler/edc_blockchain_consumer:0.2.0
     ports:
       - "9191:9191"
       - "9192:9192"
       - "9292:9292"
       - "9193:9193"
+      - "9194:9194"
+      - "9195:9195"
     environment:
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-2:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-2:9292"
       WEB_HTTP_PORT: "9191"
       WEB_HTTP_PATH: "/api"
+      WEB_HTTP_PROTOCOL_PORT: 9194
+      WEB_HTTP_PROTOCOL_PATH: "/protocol"
       WEB_HTTP_MANAGEMENT_PORT: "9192"
-      WEB_HTTP_MANAGEMENT_PATH: "/api/v1/data"
-      WEB_HTTP_IDS_PORT: "9292"
-      WEB_HTTP_IDS_PATH: "/api/v1/ids"
+      WEB_HTTP_MANAGEMENT_PATH: "/management"
+      WEB_HTTP_CONTROL_PORT: 9193
+      WEB_HTTP_CONTROL_PATH: "/control"
+      WEB_HTTP_PUBLIC_PORT: 9195
+      WEB_HTTP_PUBLIC_PATH: "/public"
       EDC_API_AUTH_KEY: "password"
-      EDC_BLOBSTORE_ENDPOINT_TEMPLATE: "http://azurite:10000/%s"
       EDC_WEB_REST_CORS_ENABLED: "true"
       EDC_WEB_REST_CORS_HEADERS: "*"
       EDC_WEB_REST_CORS_ORIGINS: "*"
       EDC_WEB_REST_CORS_METHODS: "GET, POST, DELETE, PUT, OPTIONS"
-      EDC_HOSTNAME: "connector-2"
+      EDC_RECEIVER_HTTP_ENDPOINT: "http://http-push-backend-services:4000/receiver/urn:connector:provider/callback"
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-2:9193/control/token"
+      EDC_HOSTNAME: "connector-2"
+      EDC_DSP_CALLBACK_ADDRESS: "http://connector-2:9194/protocol"
     depends_on:
       - edc-interface-2
       - data-dashboard-2
@@ -98,11 +111,11 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
+      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      POLICY_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      CONTRACT_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      TRANSFER_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      AGREEMENT_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
   data-dashboard-2:
     container_name: data-dashboard-2
     image: julianlegler/edc_data_dashboard #johann1999/data-dashboard:linux-amd64
@@ -110,12 +123,12 @@ services:
       - "5502:80"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
-      DATA_MANAGEMENT_URL: "http://localhost:9192/api/v1/data" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
-      CATALOG_URL: "http://localhost:9191/api/federatedcatalog" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
-      STORAGE_ACCOUNT: "company2assets"
+      DATA_MANAGEMENT_URL: "http://localhost:9192/management" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      CATALOG_URL: "http://localhost:9191/api" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
-      THEME: "theme-2"
+      THEME: "theme-1"
 #  azurite:
 #    container_name: azurite
 #    image: mcr.microsoft.com/azure-storage/azurite
@@ -125,7 +138,7 @@ services:
 #      AZURITE_ACCOUNTS: company1assets:key1;company2assets:key2;company3assets:key3
   http-push-backend-services:
     container_name: http-push-backend-services
-    image: julianlegler/edc_transfer_backend 
+    image: julianlegler/edc_transfer_backend:0.2.0
     ports: 
     - "4000:4000"
     volumes:
