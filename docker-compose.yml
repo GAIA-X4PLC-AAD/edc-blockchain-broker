@@ -34,7 +34,7 @@ services:
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
   edc-interface-1:
     container_name: edc-interface-1
-    image: julianlegler/edc_blockchain_interface:0.2.0
+    image: sonak53/edc_blockchain_interface:latest
     environment:
       PINATA_KEY: ""
       #demo
@@ -49,6 +49,9 @@ services:
       CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
       TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+     # - //usr/bin/docker:/usr/bin/docker
   data-dashboard-1:
     container_name: data-dashboard-1
     image: julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
@@ -143,3 +146,20 @@ services:
     - "4000:4000"
     volumes:
       - ./container-data:/data
+
+#  octez-node:
+#    container_name: octez-node-alpha
+#    image: tezos/tezos:latest
+#    hostname: octez-node
+#    command: octez-node
+#    ports:
+#      - 9732:9732
+#      - 8732:8732
+#    environment:
+#      NODE_HOST: octez-node
+#      PROTOCOL: alpha
+#    volumes:
+#      - ./node_data:/var/run/tezos/node
+#      - ./client_data:/var/run/tezos/client
+#    restart: on-failure
+
