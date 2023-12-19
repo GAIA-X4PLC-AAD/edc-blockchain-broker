@@ -44,7 +44,7 @@ Following params can be modified:
 
 ### Create your own tezos adress or asset, policy, contract contracts
 
-In case you wish to create your own tezos adress or asset, policy, contract contracts, we provide an option. It is delivered with our docker compose file and commented out by default. Comment in the octez-node lines at the bottom of the docker-compose.yml and run:
+In case you wish to create your own tezos address or asset, policy, contract contracts, we provide an option. It is delivered with our docker compose file and commented out by default. Comment in the octez-node lines at the bottom of the docker-compose.yml and run:
 ```
 docker compose up
 ```
