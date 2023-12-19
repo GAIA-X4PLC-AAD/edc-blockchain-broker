@@ -52,15 +52,15 @@ Folders are created outside of Docker where the blockchain data is stored. On Li
 ```
 sudo chmod 777 -c -R client_data/ container-data/ node_data/ 
 ```
-Generate a new address tz1... and load tez on to it
+Generate a new address tz1... and load tez on to it:
 ```
 docker exec edc-interface-1 ./newAccount.sh 
 ```
-Copy the hash and visit the tezos faucet page to fund your account
+Copy the hash and visit the tezos faucet page to fund your account at:
 ```
 https://faucet.ghostnet.teztnets.xyz 
 ```
-Generate new asset, policy, contract contracts
+Generate new asset, policy, contract contracts with:
 ```
 docker exec edc-interface-1 ./newContracts.sh 
 ```
