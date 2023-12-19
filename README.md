@@ -42,7 +42,29 @@ Following params can be modified:
 - `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
 - `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
 
+### Create your own tezos adress or asset, policy, contract contracts
 
+In case you wish to create your own tezos address or asset, policy, contract contracts, we provide an option. It is delivered with our docker compose file and commented out by default. Comment in the octez-node lines at the bottom of the docker-compose.yml and run:
+```
+docker compose up
+```
+Folders are created outside of Docker where the blockchain data is stored. On Linux systems, it is unfortunately necessary to give these folders separate write permissions for the current user because otherwise tezos/tezos:octez-node-alpha docker service cannot continue and is caught in a loop.
+```
+sudo chmod 777 -c -R client_data/ container-data/ node_data/ 
+```
+Generate a new address tz1... and load tez on to it:
+```
+docker exec edc-interface-1 ./newAccount.sh 
+```
+Copy the hash and visit the tezos faucet page to fund your account at:
+```
+https://faucet.ghostnet.teztnets.xyz 
+```
+Generate new asset, policy, contract contracts with:
+```
+docker exec edc-interface-1 ./newContracts.sh 
+```
+These can then be replaced in the docker-compose.yml in the lines 47 to 49 and the lines 117 to 119.
 
 ## Installation & Execution
 
