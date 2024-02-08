@@ -104,7 +104,7 @@ services:
 #      - azurite
   edc-interface-2:
     container_name: edc-interface-2
-    image: julianlegler/edc_blockchain_interface:0.2.0
+    image: sonak53/edc_blockchain_interface:latest
     environment:
       PINATA_KEY: ""
       #demo
