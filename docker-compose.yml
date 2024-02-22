@@ -2,7 +2,7 @@ version: "3.0"
 services:
   connector-1:
     container_name: connector-1
-    image: julianlegler/edc_blockchain_provider:0.2.1
+    image: julianlegler/edc_blockchain_provider:0.2.2
     ports:
       - "8181:8181"
       - "8182:8182"
@@ -34,7 +34,7 @@ services:
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
   edc-interface-1:
     container_name: edc-interface-1
-    image: sonak53/edc_blockchain_interface:0.1
+    image: julianlegler/edc_blockchain_interface:0.2.2
     ports:
       - "3000:3000"
     environment:
@@ -71,7 +71,7 @@ services:
   # Client 2
   connector-2:
     container_name: connector-2
-    image: julianlegler/edc_blockchain_consumer:0.2.1
+    image: julianlegler/edc_blockchain_consumer:0.2.2
     ports:
       - "9191:9191"
       - "9192:9192"
@@ -107,7 +107,7 @@ services:
 #      - azurite
   edc-interface-2:
     container_name: edc-interface-2
-    image: sonak53/edc_blockchain_interface:0.1
+    image: julianlegler/edc_blockchain_interface:0.2.2
     environment:
       PINATA_KEY: ""
       #demo
