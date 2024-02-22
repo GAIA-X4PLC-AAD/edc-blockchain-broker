@@ -41,6 +41,7 @@ Following params can be modified:
 - `CONTRACT_ADDRESS` - default value = `KT1VSymTD5oqBHqQqXPhc7hXhyoL38AK6xpC`
 - `TRANSFER_ADDRESS` - default value = `KT1N5oTfoLsKbXshfW5WrcnQJdB1kR5t21Vs`
 - `AGREEMENT_ADDRESS` - default value = `KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD`
+- `VERIFIABLE_CREDENTIALS_ADDRESS` - default value = `KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H`
 
 ### Create your own tezos adress or asset, policy, contract contracts
 
