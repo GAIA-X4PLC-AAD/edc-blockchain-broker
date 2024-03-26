@@ -46,24 +46,35 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
-      POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
-      CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      #POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
+      #CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
+      #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
+      #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      #meins
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
      # - //usr/bin/docker:/usr/bin/docker
   data-dashboard-1:
     container_name: data-dashboard-1
-    image: julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
+    image: sonak53/edc_blockchain_dashboard:latest #julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
     ports:
       - "5500:80"
+      #- "3005:3005"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
       DATA_MANAGEMENT_URL: "http://localhost:8182/management" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       CATALOG_URL: "http://localhost:8181/api" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      WEBHOOK_ADDRESS: "http://localhost:3005/webhook"
+      WEB_SOCKET: "ws://edc_blockchain_listener:3005/"
       STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
@@ -117,12 +128,20 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
-      POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
-      CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
+      #POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
+      #CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
+      #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
+      #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      #meins
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+
   data-dashboard-2:
     container_name: data-dashboard-2
     image: julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
@@ -153,6 +172,11 @@ services:
   edc_blockchain_listener:
     container_name: edc_blockchain_listener
     image: sonak53/edc_blockchain_listener:latest
+    ports:
+    - "3005:3005"
+    environment:
+      WEBHOOK_ADDRESS: "http://localhost:3005/webhook"
+      
 #  octez-node:
 #    container_name: octez-node-alpha
 #    image: tezos/tezos:latest
@@ -168,4 +192,3 @@ services:
 #      - ./node_data:/var/run/tezos/node
 #      - ./client_data:/var/run/tezos/client
 #    restart: on-failure
-
