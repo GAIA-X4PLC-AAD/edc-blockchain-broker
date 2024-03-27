@@ -171,6 +171,8 @@ services:
     image: sonak53/edc_blockchain_listener:latest
     ports:
     - "3005:3005"
+    environment:
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
       
 #  octez-node:
 #    container_name: octez-node-alpha
