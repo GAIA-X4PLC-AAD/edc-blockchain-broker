@@ -38,7 +38,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      PINATA_KEY: ""
+      PINATA_KEY: ${PINATA_KEY}
       #demo
       #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
       #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
@@ -68,13 +68,10 @@ services:
     image: sonak53/edc_blockchain_dashboard:latest #julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
     ports:
       - "5500:80"
-      #- "3005:3005"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
       DATA_MANAGEMENT_URL: "http://localhost:8182/management" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       CATALOG_URL: "http://localhost:8181/api" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
-      WEBHOOK_ADDRESS: "http://localhost:3005/webhook"
-      WEB_SOCKET: "ws://edc_blockchain_listener:3005/"
       STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
@@ -120,7 +117,7 @@ services:
     container_name: edc-interface-2
     image: julianlegler/edc_blockchain_interface:0.2.2
     environment:
-      PINATA_KEY: ""
+      PINATA_KEY: ${PINATA_KEY}
       #demo
       #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
       #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
@@ -174,8 +171,6 @@ services:
     image: sonak53/edc_blockchain_listener:latest
     ports:
     - "3005:3005"
-    environment:
-      WEBHOOK_ADDRESS: "http://localhost:3005/webhook"
       
 #  octez-node:
 #    container_name: octez-node-alpha

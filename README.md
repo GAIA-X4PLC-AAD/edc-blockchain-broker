@@ -31,7 +31,15 @@ Install an extension to ignore CORS errors in the Browser, e.g. [CORS Unblock](h
 
 ## Quickstart with docker compose
 
-Modify docker-compose.yml and add your [Pinata JWT key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key). Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
+In order to pin content to the IPFS you must include your Pinata API credentials in the form of environment parameters:
+
+1. Create a file in root directory called ".env"
+2. Add your [Pinata key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key) as a variable (the JWT key):
+   ```
+   PINATA_KEY="<JWT key>"
+   ```
+
+3. Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
 
 Optionally you can add environment varibales to the edc-interface container in order to specify your own smart contract addresses.
 Following params can be modified:
