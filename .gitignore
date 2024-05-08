@@ -7,3 +7,6 @@
 
 # container directory
 container-data/
+
+.idea
+.azure
