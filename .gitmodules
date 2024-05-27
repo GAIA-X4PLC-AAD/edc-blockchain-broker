@@ -1,10 +1,9 @@
 [submodule "EDC-Blockchain-Dashboard"]
 	path = EDC-Blockchain-Dashboard
-	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Dashboard.git
-	branch = demo_v1
+	url = git@ssh.dev.azure.com:v3/GX4FM-PLC-AAD/GX4FM-PLC-AAD/edc-dashboard
 [submodule "EDC-Blockchain-Interface"]
 	path = EDC-Blockchain-Interface
 	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Interface.git
 [submodule "EDC-Blockchain-Catalog"]
 	path = EDC-Blockchain-Catalog
-	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog.git
+	url = git@ssh.dev.azure.com:v3/GX4FM-PLC-AAD/GX4FM-PLC-AAD/edc-blockchain
