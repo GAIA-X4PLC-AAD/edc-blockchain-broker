@@ -75,12 +75,13 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
-      POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
-      CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      TOKEN_LIMIT: 1000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       # - //usr/bin/docker:/usr/bin/docker
@@ -172,12 +173,13 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #dev
-      ASSET_ADDRESS: "KT1TrcEU6o8MmmnJuL5weNhfrZFT7DFN9Ppi"
-      POLICY_ADDRESS: "KT1JtP1xS9t4sPu9uKchjqb5PVdRdDn7bRNs"
-      CONTRACT_ADDRESS: "KT1QzJR59dvx3pHaCgLUoffSTMKqqHZEYTkh"
-      TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
-      AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
+      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      TOKEN_LIMIT: 1000
   data-dashboard-2:
     container_name: data-dashboard-2
     build:
@@ -229,9 +231,24 @@ services:
   #    restart: on-failure
   jaeger:
     image: jaegertracing/all-in-one
+    user: root
     ports:
       - "16686:16686"
       - "4318:4318"
+    environment:
+      SPAN_STORAGE_TYPE: badger
+      BADGER_EPHEMERAL: false
+      BADGER_DIRECTORY_VALUE: /badger/data
+      BADGER_DIRECTORY_KEY: /badger/key
+    volumes:
+      - ./badger:/badger
+  #prepare-data-dir:
+  #  # Run this step as root so that we can change the directory owner.
+  #  user: root
+  #  image: jaegertracing/all-in-one:latest
+  #  command: "mkdir -p /badger/data && touch /badger/data/.initialized && chown -R 10001:10001 /badger/data"
+  #  volumes:
+  #    - ./badger:/badger
   prometheus:
     image: prom/prometheus:v2.30.3
     volumes:
