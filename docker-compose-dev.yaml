@@ -67,7 +67,7 @@ services:
       OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://jaeger:4318/v1/traces
       NODE_OPTIONS: "--require @opentelemetry/auto-instrumentations-node/register"
       OTEL_SERVICE_NAME: edc-interface-1
-      OTEL_NODE_ENABLED_INSTRUMENTATIONS: "http,express,dns,grpc"
+      OTEL_NODE_ENABLED_INSTRUMENTATIONS: "http,express,dns,grpc" #removed fs,net because it is spammy
       #demo
       #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
       #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
@@ -165,7 +165,7 @@ services:
       OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://jaeger:4318/v1/traces
       NODE_OPTIONS: "--require @opentelemetry/auto-instrumentations-node/register"
       OTEL_SERVICE_NAME: edc-interface-2
-      OTEL_NODE_ENABLED_INSTRUMENTATIONS: "http,express,dns,grpc"
+      OTEL_NODE_ENABLED_INSTRUMENTATIONS: "http,express,dns,grpc" #removed fs,net because it is spammy
       #demo
       #ASSET_ADDRESS: "KT1F8fKCkcseDMetbMCkmhgfZBWyQijj69aA"
       #POLICY_ADDRESS: "KT1KAbNjW3LX9Naa3koJSr6dN1YEQJ4Zwc1k"
