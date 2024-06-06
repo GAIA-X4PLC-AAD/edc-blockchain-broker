@@ -82,6 +82,7 @@ services:
       AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
       TOKEN_LIMIT: 1000
+      SD_CREATOR_URL: tu-berlin.sd-creator.gxfs.gx4fm.org/vp-from-claims
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       # - //usr/bin/docker:/usr/bin/docker
@@ -180,6 +181,7 @@ services:
       AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
       TOKEN_LIMIT: 1000
+      SD_CREATOR_URL: tu-berlin.sd-creator.gxfs.gx4fm.org/vp-from-claims
   data-dashboard-2:
     container_name: data-dashboard-2
     build:
