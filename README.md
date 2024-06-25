@@ -126,6 +126,20 @@ For a full example the following requests have to be send in this order:
 Every step makes use of pre and post Requests scripts which collect values from request responses and save them for later requests. This should give an overview of how the requests works and how to change them for individual use cases.
 
 
+## Local Development
+Using `docker-compose-dev.yaml` instead of `docker-compose.yml` will result in a fresh build of all components. For this, the repository has to be cloned including all submodules: 
+- EDC-Blockchain-Catalog
+- EDC-Blockchain-Dashboard
+- EDC-Blockchain-Interface
+
+Therefore, make sure to clone this repository using the recursive parameter:
+ `git clone --recursive  https://github.com/GAIA-X4PLC-AAD/edc-blockchain-broker.git`
+
+### Advantages of the Local Development Build
+- Automatically build new docker files when code changes are detected on restart
+- Integration of OpenTelemetry in the Catalog and Interface for better error detection
+  - Jaeger runs at `localhost:1668`
+
 
 
 ## Support
