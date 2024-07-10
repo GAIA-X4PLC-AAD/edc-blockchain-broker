@@ -22,7 +22,7 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
       OTEL_METRICS_EXPORTER: prometheus
       OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: http://prometheus:9090
-      OTEL_LOGS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: logging
       OTEL_INSTRUMENTATION_COMMON_EXPERIMENTAL_CONTROLLER_TELEMETRY_ENABLED: true
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-1:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-1:8282"
@@ -123,7 +123,7 @@ services:
       OTEL_JAVAAGENT_EXTENSIONS: opentelemetry-exporter-jaeger.jar
       OTEL_EXPORTER_JAEGER_ENDPOINT: http://jaeger:14250
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
-      OTEL_LOGS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: logging
       OTEL_INSTRUMENTATION_COMMON_EXPERIMENTAL_CONTROLLER_TELEMETRY_ENABLED: true
       EDC_BLOCKCHAIN_INTERFACE_URL: "http://edc-interface-2:3000"
       IDS_WEBHOOK_ADDRESS: "http://connector-2:9292"
@@ -232,7 +232,7 @@ services:
   #      - ./client_data:/var/run/tezos/client
   #    restart: on-failure
   jaeger:
-    image: jaegertracing/all-in-one
+    image: jaegertracing/all-in-one:1.58.0
     user: root
     ports:
       - "16686:16686"
