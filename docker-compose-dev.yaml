@@ -210,7 +210,10 @@ services:
     #      AZURITE_ACCOUNTS: company1assets:key1;company2assets:key2;company3assets:key3
   http-push-backend-services:
     container_name: http-push-backend-services
-    image: julianlegler/edc_blockchain_transfer:0.2.0
+    build:
+      context: EDC-Blockchain-Catalog
+      dockerfile: Dockerfile_pushhttpbackendservice
+    #image: julianlegler/edc_blockchain_transfer:0.2.0
     ports:
       - "4000:4000"
     volumes:
