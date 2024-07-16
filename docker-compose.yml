@@ -32,6 +32,7 @@ services:
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
+      CCP_INTERFACE_URL: https://claim-compliance-provider.gxfs.gx4fm.org/v1/send-claims
   edc-interface-1:
     container_name: edc-interface-1
     image: julianlegler/edc_blockchain_interface:0.2.2
