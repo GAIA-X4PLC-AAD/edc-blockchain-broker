@@ -4,7 +4,7 @@ services:
     container_name: connector-1
     build:
       context: EDC-Blockchain-Catalog
-      dockerfile: Dockerfile_consumer
+      dockerfile: launchers/edc-tu-berlin/Dockerfile_consumer
     volumes:
       - ./:/open-telemetry
     ports:
@@ -107,7 +107,7 @@ services:
     container_name: connector-2
     build:
       context: EDC-Blockchain-Catalog
-      dockerfile: Dockerfile_provider
+      dockerfile: launchers/edc-tu-berlin/Dockerfile_provider
     volumes:
       - ./:/open-telemetry
     ports:
@@ -212,7 +212,7 @@ services:
     container_name: http-push-backend-services
     build:
       context: EDC-Blockchain-Catalog
-      dockerfile: Dockerfile_pushhttpbackendservice
+      dockerfile: launchers/push-http-backend/Dockerfile
     #image: julianlegler/edc_blockchain_transfer:0.2.0
     ports:
       - "4000:4000"
