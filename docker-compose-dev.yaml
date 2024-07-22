@@ -45,6 +45,19 @@ services:
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
+      EDC_DATASOURCE_ASSET_NAME: default
+      EDC_DATASOURCE_POLICY_NAME: default
+      EDC_DATASOURCE_CONTRACTDEFINITION_NAME: default
+      EDC_DATASOURCE_CONTRACTNEGOTIATION_NAME: default
+      EDC_DATASOURCE_TRANSFERPROCESS_NAME: default
+      EDC_DATASOURCE_DEFAULT_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_ASSET_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_POLICY_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_CONTRACTDEFINITION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_CONTRACTNEGOTIATION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_TRANSFERPROCESS_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
+
+      
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties
@@ -148,6 +161,17 @@ services:
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-2:9193/control/token"
       EDC_HOSTNAME: "connector-2"
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-2:9194/protocol"
+      EDC_DATASOURCE_ASSET_NAME: default
+      EDC_DATASOURCE_POLICY_NAME: default
+      EDC_DATASOURCE_CONTRACTDEFINITION_NAME: default
+      EDC_DATASOURCE_CONTRACTNEGOTIATION_NAME: default
+      EDC_DATASOURCE_TRANSFERPROCESS_NAME: default
+      EDC_DATASOURCE_DEFAULT_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_ASSET_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_POLICY_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_CONTRACTDEFINITION_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_CONTRACTNEGOTIATION_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_DATASOURCE_TRANSFERPROCESS_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties
@@ -262,3 +286,30 @@ services:
       - ./EDC-Blockchain-Catalog/compose/prometheus/:/etc/prometheus/
     ports:
       - "9090:9090"
+  postgres-connector-1:
+    container_name: postgres-connector-1
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: connector
+      POSTGRES_USER: connector
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data_1:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+  postgres-connector-2:
+    container_name: postgres-connector-2
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: connector
+      POSTGRES_USER: connector
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data_2:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+
+volumes:
+  postgres_data_1:
+  postgres_data_2:
+
