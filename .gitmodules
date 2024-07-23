@@ -8,3 +8,6 @@
 [submodule "EDC-Blockchain-Catalog"]
 	path = EDC-Blockchain-Catalog
 	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog.git
+[submodule "blockchain-listener"]
+	path = blockchain-listener
+	url = https://github.com/GAIA-X4PLC-AAD/blockchain-listener
