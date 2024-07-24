@@ -45,6 +45,7 @@ services:
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
+      CCP_INTERFACE_URL: https://claim-compliance-provider.gxfs.gx4fm.org/v1/send-claims
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties
