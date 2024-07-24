@@ -10,3 +10,4 @@ container-data/
 node_data/
 client_data/
 *.log
+badger/
