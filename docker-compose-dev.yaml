@@ -56,8 +56,11 @@ services:
       EDC_DATASOURCE_CONTRACTDEFINITION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
       EDC_DATASOURCE_CONTRACTNEGOTIATION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
       EDC_DATASOURCE_TRANSFERPROCESS_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-
-      
+      EDC_OAUTH_TOKEN_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/oauth2/token
+      EDC_OAUTH_CERTIFICATE_ALIAS: 1
+      EDC_OAUTH_PRIVATE_KEY_ALIAS: 1
+      EDC_OAUTH_CLIENT_ID: 1bb53adb-61d0-441e-91d5-7aa62531593f
+      EDC_OAUTH_PROVIDER_JWKS_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/.well-known/jwks.json
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties
@@ -172,6 +175,11 @@ services:
       EDC_DATASOURCE_CONTRACTDEFINITION_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
       EDC_DATASOURCE_CONTRACTNEGOTIATION_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
       EDC_DATASOURCE_TRANSFERPROCESS_URL: jdbc:postgresql://postgres-connector-2:5432/connector?user=connector&password=password
+      EDC_OAUTH_TOKEN_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/oauth2/token
+      EDC_OAUTH_CERTIFICATE_ALIAS: 1
+      EDC_OAUTH_PRIVATE_KEY_ALIAS: 1
+      EDC_OAUTH_CLIENT_ID: ffa15c1e-9752-4251-bade-40637e854779
+      EDC_OAUTH_PROVIDER_JWKS_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/.well-known/jwks.json
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties
