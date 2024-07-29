@@ -62,17 +62,6 @@ services:
       EDC_OAUTH_CLIENT_ID: 1bb53adb-61d0-441e-91d5-7aa62531593f
       EDC_OAUTH_PROVIDER_JWKS_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/.well-known/jwks.json
       CCP_INTERFACE_URL: https://claim-compliance-provider.gxfs.gx4fm.org/v1/send-claims
-      EDC_DATASOURCE_ASSET_NAME: default
-      EDC_DATASOURCE_POLICY_NAME: default
-      EDC_DATASOURCE_CONTRACTDEFINITION_NAME: default
-      EDC_DATASOURCE_CONTRACTNEGOTIATION_NAME: default
-      EDC_DATASOURCE_TRANSFERPROCESS_NAME: default
-      EDC_DATASOURCE_DEFAULT_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-      EDC_DATASOURCE_ASSET_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-      EDC_DATASOURCE_POLICY_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-      EDC_DATASOURCE_CONTRACTDEFINITION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-      EDC_DATASOURCE_CONTRACTNEGOTIATION_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
-      EDC_DATASOURCE_TRANSFERPROCESS_URL: jdbc:postgresql://postgres-connector-1:5432/connector?user=connector&password=password
 
       
     entrypoint: java
