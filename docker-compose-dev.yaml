@@ -61,6 +61,7 @@ services:
       EDC_OAUTH_PRIVATE_KEY_ALIAS: 1
       EDC_OAUTH_CLIENT_ID: 1bb53adb-61d0-441e-91d5-7aa62531593f
       EDC_OAUTH_PROVIDER_JWKS_URL: https://ssi-to-oidc-bridge-hydra.gxfs.gx4fm.org/.well-known/jwks.json
+      CCP_INTERFACE_URL: https://claim-compliance-provider.gxfs.gx4fm.org/v1/send-claims
     entrypoint: java
       -javaagent:/opentelemetry-javaagent.jar
       -Djava.util.logging.config.file=/open-telemetry/resources/logging.properties

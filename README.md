@@ -141,6 +141,12 @@ Therefore, make sure to clone this repository using the recursive parameter:
   - Jaeger runs at `localhost:1668`
 
 
+> Hint:
+> If you want to integrate the [Claim Compliance Provider](https://claim-compliance-provider.gxfs.gx4fm.org/docs/) make sure you configure the CCP_INTERFACE_URL in the blockchain interface. You also need to add following parameters to the create asset request:
+> - claimsList -> List of claims to be passed to the CCP in the `claims` field to be checked for compliance.
+> - gxParticipantCredentials -> the three participant credentials to be passed to the CCP in the `verifiableCredentials` field.
+> 
+> Those will be passed to the Claim Compliance Provider during asset creation. The [blockchain listener](https://github.com/PLC-AAD/EDC-Blockchain-Listener) will retrieve the CCP response from the asset and send it to the federated catalogue or CES (credential event service). 
 
 ## Support
 If there are any problems with installation or deployment, you can write me a mail:

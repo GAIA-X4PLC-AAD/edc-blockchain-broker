@@ -1,7 +1,7 @@
 [submodule "EDC-Blockchain-Dashboard"]
 	path = EDC-Blockchain-Dashboard
 	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Dashboard.git
-	branch = demo_v1
+    branch = demo_v1
 [submodule "EDC-Blockchain-Interface"]
 	path = EDC-Blockchain-Interface
 	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Interface.git
@@ -10,4 +10,4 @@
 	url = https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog.git
 [submodule "blockchain-listener"]
 	path = blockchain-listener
-	url = https://github.com/GAIA-X4PLC-AAD/blockchain-listener
+	url = https://github.com/GAIA-X4PLC-AAD/blockchain-listener.git
