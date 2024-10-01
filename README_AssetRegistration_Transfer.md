@@ -42,7 +42,7 @@ pip install azure-storage-blob
 
 ## Create contract
 
-# Data Transfer
+# Data transfer
 ## Retrieve contract information
 ### Base URL
 `https://edc-pr.gxfs.gx4fm.org/management`
