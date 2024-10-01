@@ -81,6 +81,7 @@ No payload
 ### Hints
 - The value of `:id` must be replaced with the value of the desired contract-id (normally stored in the self-description).
 - The value of `edc:assetsSelector` -> `"edc:operandRight"` of a `"edc:operandLeft": "https://w3id.org/edc/v0.0.1/ns/id"` is the value that must be used in the next steps (`{{assetNameFull}}`).
+- The value of `@id` is the value that must be used in the next steps (`{{contractDefinitionId}}`).
 
 ## Contract negotiation
 ### Base URL
