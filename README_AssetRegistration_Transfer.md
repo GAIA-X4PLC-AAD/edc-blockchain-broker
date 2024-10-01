@@ -3,6 +3,8 @@ This documentation shows howto register an asset in the EDC and howto transfer a
 
 The samples are the minimum definition of data that is possible. They can be enhanced for specific requirements.
 
+This documentation is based on the EDC version 0.3.1 and expects that the claim compliance provider (CCP) extension is running (see (here)[https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog/tree/main/extensions/claim-compliance-provider-integration].
+
 # Infrastructure
 ## EDCs
 There are two EDCs running in the msg infrastructure for testing purposes. The EDCs are running in the following URLs:
@@ -11,36 +13,184 @@ There are two EDCs running in the msg infrastructure for testing purposes. The E
 
 To access the EDCs, you need to have an API key (`x-api-key`). The API key is used as a header parameter in the requests. The API key is the same for both EDCs and can be requested from the msg / TUB team.
 
-## Azure Storages
+## Azure Storage
 Those EDCs have associated azure storages both for the asset registration (on producer side) and for the data transfer (on consumer side).
 
 ### Storage and Containers
 Name of the azure storage for asset registration: `msgedcstorage`
-Available containers: 
-- `src-container`
-- `dest-container`
+Available containers for asset registration: 
 - `uc1-src`
-- `uc1-dest`
 - `uc2-src`
-- `uc2-dest`
 - `uc3-src`
+
+Available containers for data transfer:
+- `uc1-dest`
+- `uc2-dest`
 - `uc3-dest`
 
 > NOTE:
 Please use the correct container for the asset registration (`*-src`) and data transfer (`*-dest`) that fits to your use case.
 
+To upload an asset to the azure storage, you need to have a **SAS token**. The SAS token can be requested from the msg team.
+> NOTE: Please handle the SAS token with care! Do not share it with unauthorized persons.
 
 # Asset registration
 ## Upload an asset to the azure storage
-TODO
-pip install azure-storage-blob
+To programmatically upload an asset to the `msgedcstorage` you can use the provided **python** scripts. The scripts are located in the `scripts` directory next to this README file. 
 
+There you can also find programming examples for **java** and **JavaScript**. 
 
-## Create asset
+Please refer to the readme files in the `scripts` directory for more information.
 
-## Create policy
+## Create asset in the provider EDC
+### Base URL
+`https://edcdb-pr.gxfs.gx4fm.org/management`
+### Endpoint
+`/v3/assets`
+### Header parameters
+`x-api-key: {{API-KEY}}}`
+`Content-Type: application/json`
+`Accept: application/json`
+### Method
+`POST`
+### Input payload
+```json
+{
+	"@id": "{{assetNameFull}}",
+	"properties": {
+		"name": "{{assetNameFull}}",
+		"version": "1.0",
+		"contenttype": "text/json",
+		"claimComplianceProviderResponse": "",
+		"claimsList": "{{listOfClaimsAsBase64EncodedString}}",
+		"gxParticipantCredentials": "{{listOfParticipantCredentialsAsBase64EncodedString}}"
+	},
+	"dataAddress": {
+		"type": "AzureStorage",
+		"name": "{{assetNameFull}}",
+		"account": "msgedcstorage",
+		"container": "{{AzureContainerID}}",
+		"blobname": "{{Filename}}",
+		"keyName": "msgedcstorage-key1"
+	},
+	"@context": {
+		"edc": "https://w3id.org/edc/v0.0.1/ns/"
+	}
+}
+```
+### Example response
+```json
+{
+    "@type": "edc:IdResponse",
+    "@id": "bullwhip_result1",
+    "edc:createdAt": 1727772367110,
+    "@context": {
+        "tuberlin": "https://ise.tu.berlin/edc/v0.0.1/ns/",
+        "dct": "https://purl.org/dc/terms/",
+        "edc": "https://w3id.org/edc/v0.0.1/ns/",
+        "dcat": "https://www.w3.org/ns/dcat/",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "dspace": "https://w3id.org/dspace/v0.8/"
+    }
+}
+```
+### Hints
+- Note that you also can create an asset via the EDC UI (https://edcdb-pr.gxfs.gx4fm.org).
+- Make sure to replace the variables in the payload with the correct values.
 
-## Create contract
+## Create policy in the provider EDC
+### Base URL
+`https://edcdb-pr.gxfs.gx4fm.org/management`
+### Endpoint
+`/v2/policydefinitions`
+### Header parameters
+`x-api-key: {{API-KEY}}}`
+`Content-Type: application/json`
+`Accept: application/json`
+### Method
+`POST`
+### Input payload
+```json
+{
+	"policy": {
+		"@type": "set",
+		"@context": "http://www.w3.org/ns/odrl.jsonld"
+	},
+	"@id": "{{policyId}}",
+	"@context": {
+		"edc": "https://w3id.org/edc/v0.0.1/ns/"
+	}
+}
+```
+### Example response
+```json
+{
+    "@type": "edc:IdResponse",
+    "@id": "1",
+    "edc:createdAt": 1727772413817,
+    "@context": {
+        "tuberlin": "https://ise.tu.berlin/edc/v0.0.1/ns/",
+        "dct": "https://purl.org/dc/terms/",
+        "edc": "https://w3id.org/edc/v0.0.1/ns/",
+        "dcat": "https://www.w3.org/ns/dcat/",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "dspace": "https://w3id.org/dspace/v0.8/"
+    }
+}
+```
+### Hints
+- Note that you also can create an asset via the EDC UI (https://edcdb-pr.gxfs.gx4fm.org).
+- Make sure to replace the variables in the payload with the correct values.
+- Note that this is a very simple policy. You might want to extend it for your specific requirements.
+
+## Create contract in the provider EDC
+### Base URL
+`https://edcdb-pr.gxfs.gx4fm.org/management`
+### Endpoint
+`v2/contractdefinitions`
+### Header parameters
+`x-api-key: {{API-KEY}}}`
+`Content-Type: application/json`
+`Accept: application/json`
+### Method
+`POST`
+### Input payload
+```json
+{
+	"@id": "{{contractDefinitionId}}",
+	"assetsSelector": [
+		{
+			"operandLeft": "https://w3id.org/edc/v0.0.1/ns/id",
+			"operator": "=",
+			"operandRight": "{{assetNameFull}}"
+		}
+	],
+	"accessPolicyId": "{{policyId}}",
+	"contractPolicyId": "{{policyId}}",
+	"@context": {
+		"edc": "https://w3id.org/edc/v0.0.1/ns/"
+	}
+}
+```
+### Example response
+```json
+{
+    "@type": "edc:IdResponse",
+    "@id": "contract6",
+    "edc:createdAt": 1727772440000,
+    "@context": {
+        "tuberlin": "https://ise.tu.berlin/edc/v0.0.1/ns/",
+        "dct": "https://purl.org/dc/terms/",
+        "edc": "https://w3id.org/edc/v0.0.1/ns/",
+        "dcat": "https://www.w3.org/ns/dcat/",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "dspace": "https://w3id.org/dspace/v0.8/"
+    }
+}
+```
+### Hints
+- Note that you also can create an asset via the EDC UI (https://edcdb-pr.gxfs.gx4fm.org).
+- Make sure to replace the variables in the payload with the correct values.
 
 # Data transfer
 ## Retrieve contract information
