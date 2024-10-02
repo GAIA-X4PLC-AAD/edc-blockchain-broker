@@ -44,7 +44,7 @@ Please refer to the readme files in the `scripts` directory for more information
 
 ## Create asset in the provider EDC
 ### Base URL
-`https://edcdb-pr.gxfs.gx4fm.org/management`
+`https://edc-pr.gxfs.gx4fm.org/management`
 ### Endpoint
 `/v3/assets`
 ### Header parameters
@@ -100,7 +100,7 @@ Please refer to the readme files in the `scripts` directory for more information
 
 ## Create policy in the provider EDC
 ### Base URL
-`https://edcdb-pr.gxfs.gx4fm.org/management`
+`https://edc-pr.gxfs.gx4fm.org/management`
 ### Endpoint
 `/v2/policydefinitions`
 ### Header parameters
@@ -145,7 +145,7 @@ Please refer to the readme files in the `scripts` directory for more information
 
 ## Create contract in the provider EDC
 ### Base URL
-`https://edcdb-pr.gxfs.gx4fm.org/management`
+`https://edc-pr.gxfs.gx4fm.org/management`
 ### Endpoint
 `v2/contractdefinitions`
 ### Header parameters
