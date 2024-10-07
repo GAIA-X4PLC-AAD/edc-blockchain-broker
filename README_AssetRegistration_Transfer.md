@@ -61,6 +61,7 @@ Please refer to the readme files in the `scripts` directory for more information
 		"name": "{{assetNameFull}}",
 		"version": "1.0",
 		"contenttype": "text/json",
+        "originator": "https://edc-pr.gxfs.gx4fm.org/api/v1/dsp",
 		"claimComplianceProviderResponse": "",
 		"claimsList": "{{listOfClaimsAsBase64EncodedString}}",
 		"gxParticipantCredentials": "{{listOfParticipantCredentialsAsBase64EncodedString}}"
