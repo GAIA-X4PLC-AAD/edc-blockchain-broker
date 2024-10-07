@@ -349,7 +349,7 @@ No payload
         "edc": "https://w3id.org/edc/v0.0.1/ns/"
     },
     "assetId": "{{assetNameFull}}",
-    "connectorId": "edc_co",
+    "connectorId": "edc_pr",
     "contractId": "{{ContractAgreementUID}}",
     "dataDestination": {
         "type": "AzureStorage",
