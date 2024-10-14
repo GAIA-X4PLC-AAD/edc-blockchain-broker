@@ -15,7 +15,7 @@ pip install azure-storage-blob
 #### Obtain SAS-Token from msg and set it as environment variable 
 bash:
 ```bash
-export SAS_TOKEN=<your SAS token>
+export SAS_TOKEN="<your SAS token>"
 ```
 powershell:
 ```powers

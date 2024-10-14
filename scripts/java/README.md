@@ -11,7 +11,7 @@ You may want to use this as a starting point for your own project by reusing the
 #### Obtain SAS-Token from the msg team and set it as environment variable
 bash:
 ```bash
-export SAS_TOKEN=<your SAS token>
+export SAS_TOKEN="<your SAS token>"
 ```
 powershell:
 ```powers
