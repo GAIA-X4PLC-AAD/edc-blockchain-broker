@@ -13,8 +13,13 @@ You may want to use this as a starting point for your own project by reusing the
 pip install azure-storage-blob
 ```
 #### Obtain SAS-Token from msg and set it as environment variable 
+bash:
 ```bash
 export SAS_TOKEN=<your SAS token>
+```
+powershell:
+```powers
+$env:SAS_TOKEN="<your SAS token>"
 ```
 ### List of all files in a given container
 ```bash
