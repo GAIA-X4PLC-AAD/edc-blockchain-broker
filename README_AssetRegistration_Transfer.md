@@ -31,16 +31,10 @@ Available containers for data transfer:
 > NOTE:
 Please use the correct container for the asset registration (`*-src`) and data transfer (`*-dest`) that fits to your use case.
 
-To upload an asset to the azure storage, you need to have a **SAS token**. The SAS token can be requested from the msg team.
-> NOTE: Please handle the SAS token with care! Do not share it with unauthorized persons.
-
 # Asset registration
 ## Upload an asset to the azure storage
-To programmatically upload an asset to the `msgedcstorage` you can use the provided **python** scripts. The scripts are located in the `scripts` directory next to this README file. 
-
-There you can also find programming examples for **java** and **JavaScript**. 
-
-Please refer to the readme files in the `scripts` directory for more information.
+Please refer to https://github.com/GAIA-X4PLC-AAD/azure-storage-upload/blob/main/README.md for more information on how to upload an asset to the azure storage with examples.
+The designated storage name is `msgedcstorage` and the container name is one of the (source) containers mentioned above.
 
 ## Create asset in the provider EDC
 ### Base URL
