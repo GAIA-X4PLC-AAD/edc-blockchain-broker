@@ -256,7 +256,10 @@ services:
       - ./container-data:/data
   edc_blockchain_listener:
     container_name: edc_blockchain_listener
-    image: sonak53/edc_blockchain_listener:latest
+    # image: sonak53/edc_blockchain_listener:latest # Use this if you dont have the needed credentials to build it yourself
+    build:
+      context: blockchain-listener
+      dockerfile: Dockerfile
   #  octez-node:
   #    container_name: octez-node-alpha
   #    image: tezos/tezos:latest
