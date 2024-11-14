@@ -3,7 +3,7 @@ This documentation shows howto register an asset in the EDC and howto transfer a
 
 The samples are the minimum definition of data that is possible. They can be enhanced for specific requirements.
 
-This documentation is based on the EDC version 0.3.1 and expects that the claim compliance provider (CCP) extension is running (see [here](https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog/tree/main/extensions/claim-compliance-provider-integration).
+This documentation is based on the EDC version 0.3.1 and expects that the claim compliance provider (CCP) extension is running (see [here](https://github.com/GAIA-X4PLC-AAD/EDC-Blockchain-Catalog/tree/main/extensions/claim-compliance-provider-integration)).
 
 # Infrastructure
 ## EDCs
