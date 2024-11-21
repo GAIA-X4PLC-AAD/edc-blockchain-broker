@@ -37,6 +37,7 @@ In order to pin content to the IPFS you must include your Pinata API credentials
 2. Add your [Pinata key](https://knowledge.pinata.cloud/en/articles/6191471-how-to-create-an-pinata-api-key) as a variable (the JWT key):
    ```
    PINATA_KEY="<JWT key>"
+   MNEMONIC="<Mnemonic>": 
    ```
 
 3. Than you can just run `docker-compose up` to get a quick setup running for simple demonstration purposes.
@@ -69,11 +70,13 @@ Copy the hash and visit the tezos faucet page to fund your account at:
 ```
 https://faucet.ghostnet.teztnets.xyz 
 ```
-Generate new asset, policy, contract contracts with:
+Generate new asset, policy, contract and/or whitelist contracts with:
 ```
 docker exec edc-interface-1 ./newContracts.sh 
 ```
-These can then be replaced in the docker-compose.yml in the lines 47 to 49 and the lines 117 to 119.
+These can then be replaced in the docker-compose.yml in the lines 64 to 70 and the lines 156 to 162.
+
+If you wish to create and replace a new whitelist, update the hard coded default address ([KT1FmkBCmA1TEVPWfyVN7GvMumvasnTtmbMr](https://better-call.dev/ghostnet/KT1FmkBCmA1TEVPWfyVN7GvMumvasnTtmbMr/operations)). The default whitelist address for asset, policy and contract contracts is hardcoded in the corresponding artifacts\...\step_000_cont_0_contract.tz and artifacts\...\step_000_cont_0_storage.tz files.
 
 ## Installation & Execution
 
