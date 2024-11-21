@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.0.1"
 services:
   connector-1:
     container_name: connector-1
@@ -32,10 +32,10 @@ services:
       EDC_DATAPLACE_TOKEN_VALIDATION_ENDPOINT: "http://connector-1:8183/control/token"
       EDC_HOSTNAME: "connector-1"
       EDC_DSP_CALLBACK_ADDRESS: "http://connector-1:8184/protocol"
-      CCP_INTERFACE_URL: https://claim-compliance-provider.gxfs.gx4fm.org/v1/send-claims
   edc-interface-1:
     container_name: edc-interface-1
-    image: sonak53/edc_blockchain_interface:latest
+    #image: julianlegler/edc_blockchain_interface:0.2.2
+    image: sonak53/edc_blockchain_interface:0.2
     ports:
       - "3000:3000"
     environment:
@@ -53,13 +53,22 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
-      #meins
-      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      #v2
+      #ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      #POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      #CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      #TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      #AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      #whitelist_contracts
+      ASSET_ADDRESS: "KT18xeKGvSVcgBdTYsaMeSAknzRKydthkj45"
+      POLICY_ADDRESS: "KT1XkpevyRR76QEk5PdwQnSEZAABFF2MhGmm"
+      CONTRACT_ADDRESS: "KT1L44vn26X98s2qMikPKBXoLFymGViwJM47"
       TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      MNEMONIC: "position rate moment length expect cube hood myself wolf aunt forward east festival lunar disorder"
+
 
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
@@ -69,10 +78,13 @@ services:
     image: sonak53/edc_blockchain_dashboard:latest #julianlegler/edc_blockchain_dashboard:0.2.0 #johann1999/data-dashboard:linux-amd64
     ports:
       - "5500:80"
+      #- "3005:3005"
     environment:
       COMMENT: "This file will be replaced at runtime when deployed to the cloud"
       DATA_MANAGEMENT_URL: "http://localhost:8182/management" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
       CATALOG_URL: "http://localhost:8181/api" # TODO: unsolvable CORS problems when trying to connect to connector-2:9192 instead of localhost:9192 - is it a docker network issue because it uses the address for external and docker internal requests?
+      WEBHOOK_ADDRESS: "http://localhost:3005/webhook"
+      WEB_SOCKET: "ws://edc_blockchain_listener:3005/"
       STORAGE_ACCOUNT: "company1assets"
       STORAGE_EXPLORER_LINK_TEMPLATE: "storageexplorer://v:1"
       API_KEY: "password"
@@ -116,7 +128,8 @@ services:
 #      - azurite
   edc-interface-2:
     container_name: edc-interface-2
-    image: sonak53/edc_blockchain_interface:latest
+    #image: julianlegler/edc_blockchain_interface:0.2.2
+    image: sonak53/edc_blockchain_interface:0.2
     environment:
       PINATA_KEY: ${PINATA_KEY}
       #demo
@@ -132,13 +145,22 @@ services:
       #TRANSFER_ADDRESS: "KT1SgL6QbTTRGwp958YcdeVztgatsryS2CGb"
       #AGREEMENT_ADDRESS: "KT19dNiYWs36qB6YUUa3q747SX3YjKGK3Z4r"
       #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
-      #meins
-      ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
-      POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
-      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      #v2
+      #ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
+      #POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
+      #CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      #TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
+      #AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      #VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      #whitelist_contracts
+      ASSET_ADDRESS: "KT18xeKGvSVcgBdTYsaMeSAknzRKydthkj45"
+      POLICY_ADDRESS: "KT1XkpevyRR76QEk5PdwQnSEZAABFF2MhGmm"
+      CONTRACT_ADDRESS: "KT1L44vn26X98s2qMikPKBXoLFymGViwJM47"
       TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      AGREEMENT_ADDRESS: "KT19Jk6zvWfFjWMVSozPNm7VDMKSDVGrU6XD"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
+      MNEMONIC: "position rate moment length expect cube hood myself wolf aunt forward east festival lunar disorder" #TODO: change to ${MNEMONIC} from .env file. Leaving it hardcoded for now for testing purposes.
+
 
   data-dashboard-2:
     container_name: data-dashboard-2
@@ -173,7 +195,7 @@ services:
     ports:
     - "3005:3005"
     environment:
-      CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
+      CONTRACT_ADDRESS: "KT1L44vn26X98s2qMikPKBXoLFymGViwJM47"
       
 #  octez-node:
 #    container_name: octez-node-alpha
