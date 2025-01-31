@@ -82,6 +82,7 @@ services:
       - "3000:3000"
     environment:
       PINATA_KEY: "${PINATA_KEY}"
+      GOV_PRIVATE_KEY: "${GOV_PRIVATE_KEY}"
       OTEL_TRACES_EXPORTER: otlp 
       OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://jaeger:4318/v1/traces
       NODE_OPTIONS: "--require @opentelemetry/auto-instrumentations-node/register"
@@ -97,8 +98,8 @@ services:
       ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
       POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
       CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      TRANSFER_ADDRESS: "KT1NTyB7jHa39w4nAvmyoWRt5q5gtWgSQB2F"
+      AGREEMENT_LOGGING_ADDRESS: "KT1Wa19mrNmRZQPmu8y2XnVELyAEKkCEw4z7"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
       TOKEN_LIMIT: 1000
       SD_CREATOR_URL: tu-berlin.sd-creator.gxfs.gx4fm.org/vp-from-claims
@@ -200,6 +201,7 @@ services:
     #image: julianlegler/edc_blockchain_interface:0.2.2
     environment:
       PINATA_KEY: "${PINATA_KEY}"
+      GOV_PRIVATE_KEY: "${GOV_PRIVATE_KEY}"
       OTEL_TRACES_EXPORTER: otlp 
       OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://jaeger:4318/v1/traces
       NODE_OPTIONS: "--require @opentelemetry/auto-instrumentations-node/register"
@@ -215,8 +217,8 @@ services:
       ASSET_ADDRESS: "KT1N3iJne4jFnQz4tdHBz5q7Cd8Wmd6XtZSH"
       POLICY_ADDRESS: "KT1J7FvNLo2yQSUm7jcm2wzNHDBhR19Y5dJ9"
       CONTRACT_ADDRESS: "KT1QDheV2TkL3mitzYNKzunWYhSe6MmEPTh5"
-      TRANSFER_ADDRESS: "KT18pEHAbmtGj9iYQAJNhN2CtzjBGf4zBxKX"
-      AGREEMENT_ADDRESS: "KT1CHo3f2eWcnT7zCYs1KD1ERVXwEPYacj3A"
+      TRANSFER_ADDRESS: "KT1NTyB7jHa39w4nAvmyoWRt5q5gtWgSQB2F"
+      AGREEMENT_LOGGING_ADDRESS: "KT1Wa19mrNmRZQPmu8y2XnVELyAEKkCEw4z7"
       VERIFIABLE_CREDENTIALS_ADDRESS: "KT1XgUq6rzN9q6YMh44TbLffEz3zb54HbY2H"
       TOKEN_LIMIT: 1000
       SD_CREATOR_URL: tu-berlin.sd-creator.gxfs.gx4fm.org/vp-from-claims
